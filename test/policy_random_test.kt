@@ -1,4 +1,5 @@
 import junit.framework.TestCase
+import org.hamcrest.MatcherAssert.assertThat
 
 class PolicyRandomTest: TestCase() {
 
@@ -7,7 +8,7 @@ class PolicyRandomTest: TestCase() {
     val player = 1
     val playRandom = PolicyRandom().play(board, player)
 
-    assertTrue("board not returned", playRandom.is(Board) )
+    assertThat(playRandom, is(Board.class) )
   }
 
 }
