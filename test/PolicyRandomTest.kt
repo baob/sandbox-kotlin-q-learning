@@ -4,13 +4,13 @@ import org.junit.Test
 
 class PolicyRandomTest {
 
-    val emptyBoard = Board(null)
-    val boardWithOneMove = Board(null)
+    val emptyBoard = Board()
+    val boardWithOneMove = Board()
 
 
     @Test
     fun `responds to play() with a board`() {
-        val board = Board(null)
+        val board = Board()
         val player = 1
         val playRandom = PolicyRandom().play(board, player)
 

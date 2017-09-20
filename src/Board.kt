@@ -1,8 +1,13 @@
-class Board(initialBoard: Array<Int>?){
+class Board(){
 
-    var boardPlays: Array<Int> = arrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0)
+    private val defaultBoard: Array<Int> = arrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0)
+    var boardPlays: Array<Int> = defaultBoard
 
     init {
+        boardPlays = defaultBoard
+    }
+
+    constructor(initialBoard: Array<Int>?) : this() {
         if (initialBoard is Array<Int>) boardPlays = initialBoard
     }
 
