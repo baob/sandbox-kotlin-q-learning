@@ -1,4 +1,3 @@
-
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotEquals
 import org.junit.Test
@@ -34,6 +33,6 @@ class PolicyRandomTest {
         val playRandom = PolicyRandom().play(board, player)
 
         assertEquals("should be one less available move",
-                board.move_options().size - 1, playRandom.move_options().size)
+                board.moveOptions().size - 1, playRandom.moveOptions().size)
     }
 }

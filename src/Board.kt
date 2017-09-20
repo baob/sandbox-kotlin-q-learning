@@ -1,24 +1,24 @@
-class Board(initial_board: Array<Int>?){
-    var board_plays: Array<Int> = arrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0)
+class Board(initialBoard: Array<Int>?){
+
+    var boardPlays: Array<Int> = arrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0)
 
     init {
-        if (initial_board is Array<Int>) board_plays = initial_board
+        if (initialBoard is Array<Int>) boardPlays = initialBoard
     }
 
-
-    fun move_options(): List<Int> {
-        return board_plays.mapIndexedNotNull { index, value -> if (value == 0) index else null }
+    fun moveOptions(): List<Int> {
+        return boardPlays.mapIndexedNotNull { index, value -> if (value == 0) index else null }
     }
 
     fun toState(): Int {
-        return board_plays.reduce{ memo, digit -> 3 * memo + digit }
+        return boardPlays.reduce{ memo, digit -> 3 * memo + digit }
     }
 
-    fun apply_move(move: Int, player: Int): Board {
-        var new_board_plays = board_plays.copyOf()
-        new_board_plays[move] = player
-        return Board(new_board_plays)
+    fun applyMove(move: Int, player: Int): Board {
+        var newBoardPlays = boardPlays.copyOf()
+        newBoardPlays[move] = player
+        return Board(newBoardPlays)
     }
 
-    fun toArray() : Array<Int> = board_plays.copyOf()
+    fun toArray() : Array<Int> = boardPlays.copyOf()
 }
