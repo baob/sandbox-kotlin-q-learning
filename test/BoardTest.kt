@@ -1,24 +1,42 @@
+
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNotEquals
 import org.junit.Test
 
-class BoardTest {
+class `a new board` {
+
+    val board = Board()
+    val moves = board.moveOptions()
+    val emptyBoardMoves = listOf(0, 1, 2, 3, 4, 5, 6, 7, 8)
+    val emptyBoardArray = arrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0)
 
     @Test
-    fun `new board responds to move_options with 0 to 8`() {
-
-        val board = Board()
-
-        val moves = board.moveOptions()
-
-        assertEquals(listOf(0, 1, 2, 3, 4, 5, 6, 7, 8), moves)
+    fun `responds to moveOptions with 0 to 8`() {
+        assertEquals(emptyBoardMoves, moves)
     }
 
     @Test
-    fun `new board constructed with no arguments responds to move_options with 0 to 8`() {
-        val board = Board()
-
-        val moves = board.moveOptions()
-
-        assertEquals(listOf(0, 1, 2, 3, 4, 5, 6, 7, 8), moves)
+    fun `responds to toState with 0`() {
+        assertEquals(0, board.toState())
     }
+
+    @Test
+    fun `responds to toArray with arrayOf(zeroes)`() {
+        assertEquals(emptyBoardArray, board.toArray())
+    }
+
+}
+
+   class `board after player 1 moves to 8` {
+
+
+    val board = Board(arrayOf(0, 0, 0, 0, 0, 0, 0, 0, 1))
+    val moves = board.moveOptions()
+    val emptyBoardMoves = listOf(0, 1, 2, 3, 4, 5, 6, 7, 8)
+
+    @Test
+    fun `does not respond to moveOptions with 0 to 8`() {
+        assertNotEquals(emptyBoardMoves, moves)
+    }
+
 }
