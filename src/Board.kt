@@ -26,4 +26,16 @@ class Board(){
     }
 
     fun toArray() : Array<Int> = boardPlays.copyOf()
+
+    override fun toString() : String {
+        return boardPlays.foldIndexed ( "", {index, acc, player  ->  toStringFold(index, acc, player)} )
+    }
+
+    private fun toStringFold(index: Int, acc: String, player: Int) : String {
+        var res = acc
+        if (player == 0) res  = res + "."
+        else { res = res + player.toString() }
+        if ((index+1).rem(3) == 0) res = res + "\n"
+        return res
+    }
 }
