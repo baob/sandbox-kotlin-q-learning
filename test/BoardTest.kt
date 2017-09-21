@@ -48,7 +48,12 @@ class `a new board` {
     }
 
     @Test
-    fun `responds to toArray with arrayOf(zeroes)`() {
+    fun `responds to toArray with arrayOf(zeroes) except 8 is 1`() {
         assertEquals(expectedBoardArray, board.toArray())
+    }
+
+    @Test
+    fun `responds to toString with 1 in position 8`() {
+        assertEquals("...\n...\n..1\n", board.toString())
     }
 }
