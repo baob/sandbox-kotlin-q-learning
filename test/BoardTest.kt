@@ -26,7 +26,7 @@ class `a new board` {
 
     @Test
     fun `responds to toString with empty board`() {
-        assertEquals("...\n...\n...\n", board.toString())
+        assertEquals("...\n...\n...\n", board.toString(null))
     }
 }
 
@@ -54,6 +54,11 @@ class `a new board` {
 
     @Test
     fun `responds to toString with 1 in position 8`() {
-        assertEquals("...\n...\n..1\n", board.toString())
+        assertEquals("...\n...\n..1\n", board.toString(null))
+    }
+
+    @Test
+    fun `responds to toString XO with X in position 8`() {
+        assertEquals("...\n...\n..X\n", board.toString("XO"))
     }
 }
