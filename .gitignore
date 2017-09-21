@@ -1,3 +1,9 @@
+# ignores for stuff brought in by guard-gradle
+.bundle
+.ruby-gemset
+.ruby-version
+Gemfile.lock
+
 .gradle
 gradle
 build
