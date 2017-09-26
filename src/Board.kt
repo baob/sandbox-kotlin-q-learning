@@ -25,7 +25,7 @@ class Board(){
         return Board(newBoardPlays)
     }
 
-    fun toArray() : Array<Int> = boardPlays.copyOf()
+    fun toList() : List<Int> = boardPlays.toList()
 
     override fun toString() : String {
         return boardPlays.foldIndexed ( "", {index, acc, player  ->  toStringFold(index, acc, player)} )
