@@ -51,9 +51,8 @@ class `a new board` {
 
     @Test
     fun `responds to toArray with arrayOf(zeroes)`() {
-        expectedBoardList.toList().shouldMatch(equalTo(board.toList()))
+        board.toList().shouldMatch(equalTo(expectedBoardList))
 
-        assertEquals(expectedBoardList.toList(), board.toList())
-//        assertThat(board.toArray().includesExactly(expectedBoardArray))
+        assertEquals(expectedBoardList, board.toList())
     }
 }
