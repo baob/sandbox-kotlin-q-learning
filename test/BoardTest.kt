@@ -1,4 +1,6 @@
 
+import com.natpryce.hamkrest.equalTo
+import com.natpryce.hamkrest.should.shouldMatch
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
@@ -49,7 +51,10 @@ class `a new board` {
 
     @Test
     fun `responds to toArray with arrayOf(zeroes) except 8 is 1`() {
-        assertEquals(expectedBoardArray, board.toArray())
+        expectedBoardArray.toList().shouldMatch(equalTo(board.toArray().toList()))
+
+        assertEquals(expectedBoardArray.toList(), board.toArray().toList())
+//        assertThat(board.toArray().includesExactly(expectedBoardArray))
     }
 
     @Test
