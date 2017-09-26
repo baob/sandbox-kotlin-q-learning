@@ -1,6 +1,6 @@
 
+import com.natpryce.hamkrest.assertion.assertThat
 import com.natpryce.hamkrest.equalTo
-import com.natpryce.hamkrest.should.shouldMatch
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
@@ -51,8 +51,6 @@ class `a new board` {
 
     @Test
     fun `responds to toArray with arrayOf(zeroes)`() {
-        board.toList().shouldMatch(equalTo(expectedBoardList))
-
-        assertEquals(expectedBoardList, board.toList())
+        assertThat(board.toList(), equalTo(expectedBoardList))
     }
 }
