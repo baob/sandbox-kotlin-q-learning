@@ -9,7 +9,7 @@ class `a new board` {
     val board = Board()
     val moves = board.moveOptions()
     val emptyBoardMoves = listOf(0, 1, 2, 3, 4, 5, 6, 7, 8)
-    val emptyBoardArray = arrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0)
+    val emptyBoardList = listOf(0, 0, 0, 0, 0, 0, 0, 0, 0)
 
     @Test
     fun `responds to moveOptions with 0 to 8`() {
@@ -23,7 +23,7 @@ class `a new board` {
 
     @Test
     fun `responds to toArray with arrayOf(zeroes)`() {
-        assertEquals(emptyBoardArray, board.toArray())
+        assertEquals(emptyBoardList, board.toList())
     }
 
     @Test
@@ -37,7 +37,7 @@ class `a new board` {
     val board = Board(arrayOf(0, 0, 0, 0, 0, 0, 0, 0, 1))
     val moves = board.moveOptions()
     val expectedBoardMoves = listOf(0, 1, 2, 3, 4, 5, 6, 7)
-    val expectedBoardArray = arrayOf(0, 0, 0, 0, 0, 0, 0, 0, 1)
+    val expectedBoardList = listOf(0, 0, 0, 0, 0, 0, 0, 0, 1)
 
     @Test
     fun `responds to moveOptions with 0 to 7`() {
@@ -51,9 +51,9 @@ class `a new board` {
 
     @Test
     fun `responds to toArray with arrayOf(zeroes) except 8 is 1`() {
-        expectedBoardArray.toList().shouldMatch(equalTo(board.toArray().toList()))
+        expectedBoardList.toList().shouldMatch(equalTo(board.toList()))
 
-        assertEquals(expectedBoardArray.toList(), board.toArray().toList())
+        assertEquals(expectedBoardList.toList(), board.toList())
 //        assertThat(board.toArray().includesExactly(expectedBoardArray))
     }
 
