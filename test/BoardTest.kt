@@ -32,7 +32,7 @@ class `a new board` {
     }
 }
 
-   class `board after player 1 moves to 8` {
+class `board after player 1 moves to 8` {
 
     val board = Board(arrayOf(0, 0, 0, 0, 0, 0, 0, 0, 1))
     val moves = board.moveOptions()
@@ -62,5 +62,38 @@ class `a new board` {
     @Test
     fun `responds to toString XO with X in position 8`() {
         assertEquals("...\n...\n..X\n", board.toString("XO"))
+    }
+}
+
+class `board after player 1 moves to 8 and player 2 moves to 7` {
+
+    val board = Board(arrayOf(0, 0, 0, 0, 0, 0, 0, 0, 1)).applyMove(7,2)
+    val moves = board.moveOptions()
+    val expectedBoardMoves = listOf(0, 1, 2, 3, 4, 5, 6)
+    val expectedBoardList = listOf(0, 0, 0, 0, 0, 0, 0, 2, 1)
+
+    @Test
+    fun `responds to moveOptions with 0 to 6`() {
+        assertEquals(expectedBoardMoves, moves)
+    }
+
+    @Test
+    fun `responds to toState with 5`() {
+        assertEquals( (2*3 + 1), board.toState())
+    }
+
+    @Test
+    fun `responds to toArray with arrayOf(zeroes) except 8 is 1 and 7 is 2`() {
+        assertThat(board.toList(), equalTo(expectedBoardList))
+    }
+
+    @Test
+    fun `responds to toString with 1 in position 8 and 2 in 7`() {
+        assertEquals("...\n...\n.21\n", board.toString(null))
+    }
+
+    @Test
+    fun `responds to toString XO with X in position 8 and O in 7`() {
+        assertEquals("...\n...\n.OX\n", board.toString("XO"))
     }
 }
