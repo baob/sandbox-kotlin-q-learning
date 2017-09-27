@@ -17,8 +17,9 @@ class Board(){
         boardPlays[0] = initialState
     }
 
-    infix fun equals(other: Board) : Boolean {
-        return this.toState() == other.toState()
+    override fun equals(other: Any?): Boolean {
+        if (other is Board) return this.toState() == other.toState()
+        return super.equals(other)
     }
 
     fun moveOptions(): List<Int> {

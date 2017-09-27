@@ -29,9 +29,7 @@ class `a new board` {
 
     @Test
     fun `can be reconstructed from State`() {
-        assertTrue(board equals Board(board.toState()) )
-
-//        assertThat(board, equalTo(Board(board.toState())))
+        assertTrue(board == Board(board.toState()) )
     }
 
     @Test
