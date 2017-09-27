@@ -34,7 +34,7 @@ class `a new board` {
 
 class `board after player 1 moves to 8` {
 
-    val board = Board(arrayOf(0, 0, 0, 0, 0, 0, 0, 0, 1))
+    val board = Board().applyMove(8, 1)
     val moves = board.moveOptions()
     val expectedBoardMoves = listOf(0, 1, 2, 3, 4, 5, 6, 7)
     val expectedBoardList = listOf(0, 0, 0, 0, 0, 0, 0, 0, 1)
@@ -67,7 +67,7 @@ class `board after player 1 moves to 8` {
 
 class `board after player 1 moves to 8 and player 2 moves to 7` {
 
-    val board = Board(arrayOf(0, 0, 0, 0, 0, 0, 0, 0, 1)).applyMove(7,2)
+    val board = Board().applyMove(8,1).applyMove(7,2)
     val moves = board.moveOptions()
     val expectedBoardMoves = listOf(0, 1, 2, 3, 4, 5, 6)
     val expectedBoardList = listOf(0, 0, 0, 0, 0, 0, 0, 2, 1)
