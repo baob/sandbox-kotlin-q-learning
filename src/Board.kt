@@ -11,6 +11,16 @@ class Board(){
         if (initialBoard is Array<Int>) boardPlays = initialBoard
     }
 
+    constructor(initialState: Int) : this() {
+        // TODO: this is WRONG it's just a placeholder
+        boardPlays = defaultBoard
+        boardPlays[0] = initialState
+    }
+
+    infix fun equals(other: Board) : Boolean {
+        return this.toState() == other.toState()
+    }
+
     fun moveOptions(): List<Int> {
         return boardPlays.mapIndexedNotNull { index, value -> if (value == 0) index else null }
     }

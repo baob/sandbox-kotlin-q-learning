@@ -2,6 +2,7 @@
 import com.natpryce.hamkrest.assertion.assertThat
 import com.natpryce.hamkrest.equalTo
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertTrue
 import org.junit.Test
 
 class `a new board` {
@@ -24,6 +25,13 @@ class `a new board` {
     @Test
     fun `responds to toArray with arrayOf(zeroes)`() {
         assertEquals(emptyBoardList, board.toList())
+    }
+
+    @Test
+    fun `can be reconstructed from State`() {
+        assertTrue(board equals Board(board.toState()) )
+
+//        assertThat(board, equalTo(Board(board.toState())))
     }
 
     @Test
