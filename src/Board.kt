@@ -33,9 +33,14 @@ class Board(){
 
     private fun toStringFold(index: Int, acc: String, player: Int, playerTokens: String?) : String {
         var tokens: String = playerTokens ?: "12"
-        var res: String = acc
-        if (player == 0) res += "."
-        else { res += tokens[player-1] }
+        var res: String = acc + cellToString(index, player, tokens)
+        return res
+    }
+
+    private fun cellToString(index: Int, player: Int, tokens: String) : String {
+        var res: String
+        if (player == 0) res = "."
+        else res = tokens[player-1].toString()
         if ((index+1).rem(3) == 0) res += "\n"
         return res
     }
