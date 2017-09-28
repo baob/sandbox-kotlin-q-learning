@@ -12,9 +12,9 @@ class Board(){
     }
 
     constructor(initialState: Int) : this() {
-        // TODO: this is WRONG it's just a placeholder
-        boardPlays = defaultBoard
-        boardPlays[0] = initialState
+        val initialStateBase3: String = initialState.toString(3)
+        val padding: String = "000000000".subSequence(initialStateBase3.length, 9).toString()
+        boardPlays = (padding + initialStateBase3).map<Int> { char -> char.toString().toInt() }.toTypedArray()
     }
 
     override fun equals(other: Any?): Boolean {

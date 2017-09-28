@@ -3,7 +3,6 @@ import com.natpryce.hamkrest.assertion.assertThat
 import com.natpryce.hamkrest.equalTo
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
-import org.junit.Ignore
 import org.junit.Test
 
 class `a new board` {
@@ -62,7 +61,6 @@ class `board after player 1 moves to 8` {
     }
 
     @Test
-    @Ignore
     fun `can be reconstructed from State`() {
         assertThat(board, equalTo(Board(board.toState()) ))
     }
