@@ -12,9 +12,19 @@ class Board(){
     }
 
     constructor(initialState: Int) : this() {
-        val initialStateBase3: String = initialState.toString(3)
-        val padding: String = "000000000".subSequence(initialStateBase3.length, 9).toString()
-        boardPlays = (padding + initialStateBase3).map<Int> { char -> char.toString().toInt() }.toTypedArray()
+        var boardAsList = boardPlaysFromState(initialState)
+        boardPlays = boardAsList.toTypedArray()
+    }
+
+    private fun boardPlaysFromState(initialState: Int): MutableList<Int> {
+        var boardAsList = mutableListOf(initialState)
+        defaultBoard.fold(boardAsList) { stack, _ ->
+            val dividend = stack.pop();
+            val rem = dividend.rem(3);
+            val quotient = dividend.div(3); stack.unshift(rem); stack.push(quotient);
+        }
+        boardAsList.pop()
+        return boardAsList
     }
 
     override fun equals(other: Any?): Boolean {
