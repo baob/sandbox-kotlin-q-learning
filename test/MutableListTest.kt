@@ -2,10 +2,6 @@ import com.natpryce.hamkrest.assertion.assertThat
 import com.natpryce.hamkrest.equalTo
 import org.junit.Test
 
-//var s = mutableListOf(1,2,3)
-//var s2 = s.add(1,2)
-//var s3 = s.removeAt()     removeAt()
-
 class `a mutable list with elements 1 2 3` {
     var list1: MutableList<Int> = mutableListOf(1,2,3)
 
@@ -32,8 +28,6 @@ class `a mutable list with elements 1 2 4` {
     }
 }
 
-
-
 class `a mutable list with elements 3 5 7` {
     var list11: MutableList<Int> = mutableListOf(3,5,7)
 
@@ -41,5 +35,20 @@ class `a mutable list with elements 3 5 7` {
     fun `unshift(9) should give 9 3 5 7`() {
         assertThat(list11.unshift(9), equalTo(mutableListOf(9,3,5,7)))
     }
+}
 
+class `a mutable list with elements 7 3 1` {
+
+    @Test
+    fun `shift() should change the list to 3 1`() {
+        var list12 = mutableListOf(7,3,1)
+        list12.shift()
+        assertThat(list12, equalTo(mutableListOf(3,1)))
+    }
+
+    @Test
+    fun `shift() should return 7`() {
+        var list13 = mutableListOf(7,3,1)
+        assertThat(list13.shift(), equalTo(7))
+    }
 }
