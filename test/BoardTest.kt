@@ -94,6 +94,11 @@ class `board after player 1 moves to 8 and player 2 moves to 7` {
     }
 
     @Test
+    fun `can be reconstructed from State`() {
+        assertThat(board, equalTo(Board(board.toState()) ))
+    }
+
+    @Test
     fun `responds to toArray with arrayOf(zeroes) except 8 is 1 and 7 is 2`() {
         assertThat(board.toList(), equalTo(expectedBoardList))
     }
@@ -124,6 +129,11 @@ class `board after player 1 moves to 8 and player 2 moves to 7 and player 1 move
     @Test
     fun `responds to toState with 6568`() {
         assertEquals( (1*9*9*9*9 + 2*3 + 1), board.toState())
+    }
+
+    @Test
+    fun `can be reconstructed from State`() {
+        assertThat(board, equalTo(Board(board.toState()) ))
     }
 
     @Test
