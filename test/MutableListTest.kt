@@ -33,3 +33,13 @@ class `a mutable list with elements 1 2 4` {
 }
 
 
+
+class `a mutable list with elements 3 5 7` {
+    var list11: MutableList<Int> = mutableListOf(3,5,7)
+
+    @Test
+    fun `unshift(9) should give 9 3 5 7`() {
+        assertThat(list11.unshift(9), equalTo(mutableListOf(9,3,5,7)))
+    }
+
+}
