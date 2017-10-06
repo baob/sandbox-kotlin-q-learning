@@ -18,6 +18,8 @@ class Board(){
 
     private fun boardPlaysFromState(initialState: Int): MutableList<Int> {
         var boardAsList = mutableListOf(initialState)
+
+//      TODO: we're not really interested in defaultBoard, just want to loop the same number of times. Make cleaner ?
         defaultBoard.fold(boardAsList) { stack, _ ->
             val dividend = stack.pop();
             val rem = dividend.rem(3);
