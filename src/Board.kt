@@ -16,6 +16,17 @@ class Board(){
         boardPlays = boardAsList.toTypedArray()
     }
 
+    private val wins: List<List<Int>> = listOf(
+            listOf(0, 1, 2),
+            listOf(3, 4, 5),
+            listOf(6, 7, 8),
+            listOf(0, 3, 6),
+            listOf(1, 4, 7),
+            listOf(2, 5, 8),
+            listOf(0, 4, 8),
+            listOf(2, 4, 6)
+    )
+
     private fun boardPlaysFromState(initialState: Int): MutableList<Int> {
         var boardAsList = mutableListOf(initialState)
 
@@ -52,6 +63,12 @@ class Board(){
 
     fun toString(playerTokens: String? ) : String {
         return boardPlays.foldIndexed ( "", {index, acc, player  ->  toStringFold(index, acc, player, playerTokens)} )
+    }
+
+    fun isWinFor(player: Int): Boolean {
+        return wins.any { winningRow ->
+            winningRow.all { boardPlays[it] == player }
+        }
     }
 
     private fun toStringFold(index: Int, acc: String, player: Int, playerTokens: String?) : String {

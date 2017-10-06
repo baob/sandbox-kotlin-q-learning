@@ -1,8 +1,6 @@
-
 import com.natpryce.hamkrest.assertion.assertThat
 import com.natpryce.hamkrest.equalTo
-import org.junit.Assert.assertEquals
-import org.junit.Assert.assertTrue
+import org.junit.Assert.*
 import org.junit.Test
 
 class `a new board` {
@@ -29,7 +27,7 @@ class `a new board` {
 
     @Test
     fun `can be reconstructed from State`() {
-        assertTrue(board == Board(board.toState()) )
+        assertTrue(board == Board(board.toState()))
     }
 
     @Test
@@ -62,7 +60,7 @@ class `board after player 1 moves to 8` {
 
     @Test
     fun `can be reconstructed from State`() {
-        assertThat(board, equalTo(Board(board.toState()) ))
+        assertThat(board, equalTo(Board(board.toState())))
     }
 
     @Test
@@ -78,7 +76,7 @@ class `board after player 1 moves to 8` {
 
 class `board after player 1 moves to 8 and player 2 moves to 7` {
 
-    val board = Board().applyMove(8,1).applyMove(7,2)
+    val board = Board().applyMove(8, 1).applyMove(7, 2)
     val moves = board.moveOptions()
     val expectedBoardMoves = listOf(0, 1, 2, 3, 4, 5, 6)
     val expectedBoardList = listOf(0, 0, 0, 0, 0, 0, 0, 2, 1)
@@ -90,12 +88,12 @@ class `board after player 1 moves to 8 and player 2 moves to 7` {
 
     @Test
     fun `responds to toState with 5`() {
-        assertEquals( (2*3 + 1), board.toState())
+        assertEquals((2 * 3 + 1), board.toState())
     }
 
     @Test
     fun `can be reconstructed from State`() {
-        assertThat(board, equalTo(Board(board.toState()) ))
+        assertThat(board, equalTo(Board(board.toState())))
     }
 
     @Test
@@ -116,7 +114,7 @@ class `board after player 1 moves to 8 and player 2 moves to 7` {
 
 class `board after player 1 moves to 8 and player 2 moves to 7 and player 1 moves to 0` {
 
-    val board = Board().applyMove(8,1).applyMove(7,2).applyMove(0,1)
+    val board = Board().applyMove(8, 1).applyMove(7, 2).applyMove(0, 1)
     val moves = board.moveOptions()
     val expectedBoardMoves = listOf(1, 2, 3, 4, 5, 6)
     val expectedBoardList = listOf(1, 0, 0, 0, 0, 0, 0, 2, 1)
@@ -128,12 +126,12 @@ class `board after player 1 moves to 8 and player 2 moves to 7 and player 1 move
 
     @Test
     fun `responds to toState with 6568`() {
-        assertEquals( (1*9*9*9*9 + 2*3 + 1), board.toState())
+        assertEquals((1 * 9 * 9 * 9 * 9 + 2 * 3 + 1), board.toState())
     }
 
     @Test
     fun `can be reconstructed from State`() {
-        assertThat(board, equalTo(Board(board.toState()) ))
+        assertThat(board, equalTo(Board(board.toState())))
     }
 
     @Test
@@ -150,4 +148,39 @@ class `board after player 1 moves to 8 and player 2 moves to 7 and player 1 move
     fun `responds to toString XO with X in position 8 and O in 7`() {
         assertEquals("X..\n...\n.OX\n", board.toString("XO"))
     }
+}
+
+class BoardWinsTest {
+
+    @Test
+    fun `3 in a row makes a win`() {
+        expected_wins.forEach { assertWinningRow() }
+    }
+
+    @Test
+    fun `empty board is not a win`() {
+        assertFalse(Board().isWinFor(1))
+        assertFalse(Board().isWinFor(2))
+    }
+
+    private fun assertWinningRow(): (List<Int>) -> Unit {
+        return { expected_win_row ->
+            val winBoard = expected_win_row.fold(Board(),
+                    { tempBoard, move -> tempBoard.applyMove(move, 1) }
+            )
+            assertTrue(winBoard.isWinFor(1))
+        }
+    }
+
+    private val expected_wins: List<List<Int>> = listOf(
+            listOf(0, 1, 2),
+            listOf(3, 4, 5),
+            listOf(6, 7, 8),
+            listOf(0, 3, 6),
+            listOf(1, 4, 7),
+            listOf(2, 5, 8),
+            listOf(0, 4, 8),
+            listOf(2, 4, 6)
+    )
+
 }
