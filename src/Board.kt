@@ -84,4 +84,10 @@ class Board(){
         if ((index+1).rem(3) == 0) res += "\n"
         return res
     }
+
+    fun nextTimeCouldBeWinFor(player: Int): Boolean {
+        return moveOptions().any { move ->
+            applyMove(move, player).isWinFor(player)
+        }
+    }
 }

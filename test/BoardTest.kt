@@ -195,4 +195,21 @@ class BoardWinsTest {
             listOf(2, 4, 6)
     )
 
+    @Test
+    fun `any single play is not a win next time`() {
+        (0..8).forEach{cell -> assertFalse(Board().applyMove(cell,1).nextTimeCouldBeWinFor(1) ) }
+    }
+
+    @Test
+    fun `a win less one play could be a win next time`() {
+        expected_wins.forEach { winningRow ->
+            var board = Board()
+            (0..1).forEach { index -> board = board.applyMove(winningRow[index], 1) }
+            assertTrue(board.nextTimeCouldBeWinFor(1))
+        }
+    }
+
+
+
+
 }
