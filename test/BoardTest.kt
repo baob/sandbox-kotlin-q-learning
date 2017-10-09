@@ -168,6 +168,15 @@ class BoardWinsTest {
         (0..8).forEach{cell -> assertFalse(Board().applyMove(cell,1).isWinFor(1) ) }
     }
 
+    @Test
+    fun `any double play is not a win`() {
+        (1..8).forEach { cell1 ->
+            (0..(cell1-1)).forEach{ cell2 ->
+                assertFalse(Board().applyMove(cell1,1).applyMove(cell2,1).isWinFor(1))
+            }
+        }
+    }
+
     private fun assertWinningRow(): (List<Int>) -> Unit {
         return { expected_win_row ->
             val winBoard = expected_win_row.fold(Board(),
