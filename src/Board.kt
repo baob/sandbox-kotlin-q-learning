@@ -1,4 +1,4 @@
-class Board(){
+class Board() {
 
     private val defaultBoard: Array<Int> = arrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0)
     var boardPlays: Array<Int> = defaultBoard
@@ -50,7 +50,7 @@ class Board(){
     }
 
     fun toState(): Int {
-        return boardPlays.reduce{ memo, digit -> 3 * memo + digit }
+        return boardPlays.reduce { memo, digit -> 3 * memo + digit }
     }
 
     fun applyMove(move: Int, player: Int): Board {
@@ -59,10 +59,10 @@ class Board(){
         return Board(newBoardPlays)
     }
 
-    fun toList() : List<Int> = boardPlays.toList()
+    fun toList(): List<Int> = boardPlays.toList()
 
-    fun toString(playerTokens: String? ) : String {
-        return boardPlays.foldIndexed ( "", {index, acc, player  ->  toStringFold(index, acc, player, playerTokens)} )
+    fun toString(playerTokens: String?): String {
+        return boardPlays.foldIndexed("", { index, acc, player -> toStringFold(index, acc, player, playerTokens) })
     }
 
     fun isWinFor(player: Int): Boolean {
@@ -71,17 +71,17 @@ class Board(){
         }
     }
 
-    private fun toStringFold(index: Int, acc: String, player: Int, playerTokens: String?) : String {
+    private fun toStringFold(index: Int, acc: String, player: Int, playerTokens: String?): String {
         var tokens: String = playerTokens ?: "12"
         var res: String = acc + cellToString(index, player, tokens)
         return res
     }
 
-    private fun cellToString(index: Int, player: Int, tokens: String) : String {
+    private fun cellToString(index: Int, player: Int, tokens: String): String {
         var res: String
         if (player == 0) res = "."
-        else res = tokens[player-1].toString()
-        if ((index+1).rem(3) == 0) res += "\n"
+        else res = tokens[player - 1].toString()
+        if ((index + 1).rem(3) == 0) res += "\n"
         return res
     }
 
@@ -97,5 +97,11 @@ class Board(){
 
     fun nextTimeIsGameOver(): Boolean {
         return moveOptions().size == 1
+    }
+
+    fun winner(): Int? {
+        if (isWinFor(1)) return 1
+        if (isWinFor(2)) return 2
+        return null
     }
 }

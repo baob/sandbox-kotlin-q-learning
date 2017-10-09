@@ -178,10 +178,11 @@ class BoardWinsTest {
     }
 
     private fun assertWinningRow(expected_win_row: List<Int>): Unit {
-            val winBoard = expected_win_row.fold(Board(),
-                    { tempBoard, move -> tempBoard.applyMove(move, 1) }
-            )
-            assertTrue(winBoard.isWinFor(1))
+        val winBoard = expected_win_row.fold(Board(),
+                { tempBoard, move -> tempBoard.applyMove(move, 1) }
+        )
+        assertTrue(winBoard.isWinFor(1))
+        assertThat(winBoard.winner(), equalTo(1))
     }
 
     private val expected_wins: List<List<Int>> = listOf(
@@ -197,8 +198,11 @@ class BoardWinsTest {
 
     @Test
     fun `any single play is not a win next time`() {
-        (0..8).forEach{cell -> assertFalse(Board().applyMove(cell,1).nextTimeCouldBeWinFor(1) ) }
-        (0..8).forEach{cell -> assertFalse(Board().applyMove(cell,1).nextTimeIsWinFor(1) ) }
+        (0..8).forEach{cell ->
+            val applyMove = Board().applyMove(cell, 1)
+            assertFalse(applyMove.nextTimeCouldBeWinFor(1) )
+            assertFalse(applyMove.nextTimeIsWinFor(1) )
+        }
     }
 
     @Test
