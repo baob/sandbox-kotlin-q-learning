@@ -154,7 +154,7 @@ class BoardWinsTest {
 
     @Test
     fun `3 in a row makes a win`() {
-        expected_wins.forEach { assertWinningRow() }
+        expected_wins.forEach { win -> assertWinningRow(win) }
     }
 
     @Test
@@ -177,13 +177,11 @@ class BoardWinsTest {
         }
     }
 
-    private fun assertWinningRow(): (List<Int>) -> Unit {
-        return { expected_win_row ->
+    private fun assertWinningRow(expected_win_row: List<Int>): Unit {
             val winBoard = expected_win_row.fold(Board(),
                     { tempBoard, move -> tempBoard.applyMove(move, 1) }
             )
             assertTrue(winBoard.isWinFor(1))
-        }
     }
 
     private val expected_wins: List<List<Int>> = listOf(
