@@ -198,6 +198,7 @@ class BoardWinsTest {
     @Test
     fun `any single play is not a win next time`() {
         (0..8).forEach{cell -> assertFalse(Board().applyMove(cell,1).nextTimeCouldBeWinFor(1) ) }
+        (0..8).forEach{cell -> assertFalse(Board().applyMove(cell,1).nextTimeIsWinFor(1) ) }
     }
 
     @Test
@@ -207,6 +208,17 @@ class BoardWinsTest {
             (0..1).forEach { index -> board = board.applyMove(winningRow[index], 1) }
             assertTrue(board.nextTimeCouldBeWinFor(1))
         }
+    }
+
+    @Test
+    fun `when one move left on board, a win less one play MUST be a win next time`() {
+        expected_wins.forEach { winningRow ->
+            var board = Board(arrayOf(2, 2, 2, 2, 2 ,2 ,2 ,2 ,2))
+            (0..1).forEach { index -> board = board.applyMove(winningRow[index], 1) }
+            board = board.applyMove(winningRow[2], 0)
+            assertTrue(board.nextTimeIsWinFor(1))
+        }
+
     }
 
 

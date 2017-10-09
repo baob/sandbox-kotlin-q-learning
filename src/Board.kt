@@ -90,4 +90,12 @@ class Board(){
             applyMove(move, player).isWinFor(player)
         }
     }
+
+    fun nextTimeIsWinFor(player: Int): Boolean {
+        return nextTimeIsGameOver() && nextTimeCouldBeWinFor(player)
+    }
+
+    fun nextTimeIsGameOver(): Boolean {
+        return moveOptions().size == 1
+    }
 }
